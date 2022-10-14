@@ -15,7 +15,7 @@ provider "github" {
 
 resource "github_repository_project" "project" {
   name       = "A Repository Project"
-  repository = "rajeshmohancloud/android-2"
+  repository = "android-2"
   body       = "This is a repository project."
 }
 
