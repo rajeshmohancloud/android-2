@@ -10,14 +10,8 @@ terraform {
 # Configure the GitHub Provider
 provider "github" {}
 
-resource "github_repository" "example" {
-  name        = "example"
-  description = "My awesome codebase"
-
-  visibility = "private"
-
-  template {
-    owner      = "github"
-    repository = "terraform-module-template"
-  }
+resource "github_repository_project" "project" {
+  name       = "A Repository Project"
+  repository = "android-2"
+  body       = "This is a repository project."
 }
