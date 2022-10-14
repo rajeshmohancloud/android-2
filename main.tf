@@ -9,6 +9,7 @@ terraform {
 
 # Configure the GitHub Provider
 provider "github" {
+  owner = "rajeshmohancloud"
   token = var.token
 }
 
