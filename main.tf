@@ -8,10 +8,14 @@ terraform {
 }
 
 # Configure the GitHub Provider
-provider "github" {}
+provider "github" {
+  token = var.token
+}
 
 resource "github_repository_project" "project" {
   name       = "A Repository Project"
   repository = "android-2"
   body       = "This is a repository project."
 }
+
+variable "token" {}

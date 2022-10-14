@@ -37,5 +37,5 @@ jobs:
       - name: Terraform Apply
         id: terraform_apply
         # if: github.event_name == 'pull_request'
-        run: terraform apply --auto-approve
+        run: terraform apply --auto-approve --var token=${{ secrets.GITHUB_TOKEN }}
         continue-on-error: false
