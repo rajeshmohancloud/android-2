@@ -1,0 +1,41 @@
+name: "Working-Terraform"
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment-name:
+        type: choice
+        description: Select the environment to create dynamic IAM role with least privilege
+        options: 
+        - mgmt
+        - live
+        - dev
+        required: true
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  terraform:
+    name: "Terraform"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+      
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Apply
+        id: terraform_apply
+        # if: github.event_name == 'pull_request'
+        run: terraform apply --auto-approve
+        continue-on-error: false
